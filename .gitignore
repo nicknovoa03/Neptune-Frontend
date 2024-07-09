@@ -1,0 +1,11 @@
+#next.js 
+.next
+
+#yarn lock
+yarn.lock
+
+#node modules 
+node_modules
+
+#env
+.env
