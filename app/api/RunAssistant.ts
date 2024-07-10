@@ -36,7 +36,7 @@ export async function GenerateResponse({
                          and type is the assosiation of the two people.\
                          Print the entire list. Do not limit responses give the entire network of associations.\
                          Do not list sources"
- 
+
   try {
 
     // Step 1: Create a thread
@@ -64,7 +64,7 @@ export async function GenerateResponse({
     // Save the last message as the reponse from the API
     for (const message of messages!.data.reverse()) {
       if (message.content[0].type == 'text') {
-        console.log(`${message.role} > ${message.content[0].text.value}`)
+        //console.log(`${message.role} > ${message.content[0].text.value}`)
         response = message.content[0].text.value
       }
     }
