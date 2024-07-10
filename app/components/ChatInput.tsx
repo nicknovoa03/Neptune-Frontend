@@ -85,6 +85,7 @@ function ChatInput({ chatId }: Props) {
           id: notification,
         })
       } catch (error: any) {
+        console.log('GEN RESP ERROR:', error.message)
         toast.error('NeptuneGPT unable to respond!', {
           id: notification,
         })
@@ -92,7 +93,7 @@ function ChatInput({ chatId }: Props) {
 
       setIsLoading(true)
     } catch (error: any) {
-      console.log('GPT ERROR:', error.message)
+      console.log('ASK QUESTION ERROR:', error.message)
     }
   }
 

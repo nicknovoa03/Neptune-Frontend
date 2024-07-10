@@ -67,7 +67,7 @@ export async function GenerateResponse({
     }
     return response
   } catch (error) {
-    console.error('Error:', error)
+    console.error('Run Assistant Error:', error)
   }
 }
 
