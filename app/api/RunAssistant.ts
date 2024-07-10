@@ -1,16 +1,13 @@
 'use server'
 import {
-  createAssistant,
   createThread,
   addMessageToThread,
   runThread,
-} from './AssistantTools'
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
-import { firestore } from '../firebase/firebase'
+} from '../open_ai/AssistantTools'
+
 import * as dotenv from 'dotenv'
 import { Session } from 'next-auth'
-import chatGPTLogo from '@/app/public/ChatGPTLogo.png'
-import { Thread } from 'openai/resources/beta/threads/threads.mjs'
+
 
 dotenv.config()
 
