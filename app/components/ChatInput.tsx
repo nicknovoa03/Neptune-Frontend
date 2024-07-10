@@ -63,6 +63,7 @@ function ChatInput({ chatId }: Props) {
           chatId,
           prompt: input,
         })
+        console.log(response)
         // Create message for the DB
         const message: Message = {
           text: response || 'NeptuneGPT unable to answer that!',
