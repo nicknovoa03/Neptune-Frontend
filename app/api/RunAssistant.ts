@@ -30,7 +30,13 @@ export async function GenerateResponse({
   prompt,
 }: RunAssistantProps) {
 
-  const instructions = "Please respond to this question with a CSV formatted table that includes 'source,' 'target,' and 'type'. make sure to use new line characters to break up areas of the response. Create a source target network list of people who work on the field given by the user, and only associate names with one another in a row if they are associated with that person either as a mention or as a mentioned association. Print the entire list."
+  const instructions = "Please respond to this question with a comma separated values table that includes\
+                        'source,' 'target,' and 'type'. Create a source target network list of people\
+                         who work on a given subject, source and target must be people not organizations,\
+                         and type is the assosiation of the two people.\
+                         Print the entire list. Do not limit responses give the entire network of associations.\
+                         Do not list sources"
+ 
   try {
 
     // Step 1: Create a thread
@@ -58,7 +64,7 @@ export async function GenerateResponse({
     // Save the last message as the reponse from the API
     for (const message of messages!.data.reverse()) {
       if (message.content[0].type == 'text') {
-        //console.log(`${message.role} > ${message.content[0].text.value}`)
+        console.log(`${message.role} > ${message.content[0].text.value}`)
         response = message.content[0].text.value
       }
     }
