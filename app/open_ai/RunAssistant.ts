@@ -26,6 +26,7 @@ type RunAskQuestionProps = {
   response: string
 }
 
+export const maxDuration = 30;
 export async function GenerateResponse({
   session,
   chatId,
@@ -45,7 +46,6 @@ export async function GenerateResponse({
       content: prompt,
     })
     console.log('Message added to thread')
-
     // Step 3: Run the thread
     const messages = await runThread({
       threadId: thread.id,
