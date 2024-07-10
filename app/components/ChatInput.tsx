@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 
 import { firestore } from '../firebase/firebase'
-import { GenerateResponse } from '../open_ai/RunAssistant'
+import { GenerateResponse } from '../api/RunAssistant'
 
 import chatGPTLogo from '@/app/public/ChatGPTLogo.png'
 
