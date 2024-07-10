@@ -85,7 +85,7 @@ function ChatInput({ chatId }: Props) {
           id: notification,
         })
       } catch (error: any) {
-        console.log(error.message)
+        console.log('GPT ERROR:', error.message)
         toast.error('NeptuneGPT unable to respond!', {
           id: notification,
         })
