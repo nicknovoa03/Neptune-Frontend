@@ -1,4 +1,3 @@
-'use server'
 import {
   createAssistant,
   createThread,
@@ -13,6 +12,7 @@ import chatGPTLogo from '@/app/public/ChatGPTLogo.png'
 import { Thread } from 'openai/resources/beta/threads/threads.mjs'
 
 dotenv.config()
+export const maxDuration = 30
 
 type RunAssistantProps = {
   session: Session | null
