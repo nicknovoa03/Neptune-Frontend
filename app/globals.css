@@ -10,6 +10,10 @@
   .chatRow {
     @apply rounded px-3 py-3 text-sm flex items-center justify-center hover:bg-[#51545bb0] cursor-pointer text-gray-300 transition-all duration-200 ease-out;
   }
+
+  .display-linebreak {
+    white-space: pre-line;
+  }
 }
 
 @layer utilities {
@@ -23,3 +27,5 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+

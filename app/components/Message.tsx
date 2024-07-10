@@ -27,7 +27,9 @@ function Message({ message }: Props) {
           alt=""
           className="h-6 w-6 sm:h-10 sm:w-10 rounded-sm"
         />
-        <p className="pt-1 text-sm sm:text-base">{message.text}</p>
+        <p className="display-linebreak pt-1 text-sm sm:text-base">
+          {message.text}
+        </p>
       </div>
     </motion.div>
   )
