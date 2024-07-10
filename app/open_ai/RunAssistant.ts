@@ -26,7 +26,6 @@ type RunAskQuestionProps = {
   response: string
 }
 
-export const maxDuration = 30;
 export async function GenerateResponse({
   session,
   chatId,
