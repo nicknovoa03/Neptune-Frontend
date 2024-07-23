@@ -35,7 +35,7 @@ export async function GenerateResponse({
                          who work on a given subject, source and target must be people not organizations,\
                          and type is the assosiation of the two people.\
                          Print the entire list. Do not limit responses give the entire network of associations.\
-                         Do not list sources"
+                         Remove the source tags in the response"
 
   try {
 
