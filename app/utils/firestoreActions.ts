@@ -9,6 +9,7 @@ import {
 } from 'firebase/firestore'
 import { firestore } from '../firebase/firebase'
 import { Session } from 'next-auth'
+import { Message } from '@/typing'
 
 type NewChatActionProps = {
   session: Session | null
