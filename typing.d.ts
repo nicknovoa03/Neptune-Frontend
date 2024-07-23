@@ -9,23 +9,21 @@ type Message = {
   };
 }
 
-export type CSVRecord = {
+export interface CSVRecord {
   source: string;
   target: string;
-  association: string;
 }
 
-export type Node = {
+export interface Node {
   id: string;
 }
 
-export type Link = {
+export interface Link {
   source: string;
   target: string;
-  association: string;
 }
 
-export type GraphData = {
+export interface GraphData {
   nodes: Node[];
   links: Link[];
 }
