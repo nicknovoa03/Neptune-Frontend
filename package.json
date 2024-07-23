@@ -33,6 +33,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-force-graph-2d": "^1.25.5",
+    "react-force-graph-3d": "^1.24.3",
     "react-hot-toast": "^2.4.1",
     "react-select": "^5.7.4",
     "sharp": "^0.33.4",
