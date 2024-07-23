@@ -31,11 +31,11 @@ export async function GenerateResponse({
 }: RunAssistantProps) {
 
   const instructions = "Please respond to this question with a comma separated values table that includes\
-                        'source,' 'target,' and 'type'. Create a source target network list of people\
+                        'source,' 'target,' and 'type', but do not include the title row Create a source target network list of people\
                          who work on a given subject, source and target must be people not organizations,\
                          and type is the assosiation of the two people.\
                          Print the entire list. Do not limit responses give the entire network of associations.\
-                         Remove the source tags in the response"
+                         Remove the source tags in the response."
 
   try {
 
