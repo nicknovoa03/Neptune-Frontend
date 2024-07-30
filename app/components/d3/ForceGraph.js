@@ -9,7 +9,7 @@ const ForceGraph = ({ data }) => {
   useEffect(() => {
     // Select the SVG element and set its dimensions
     const svg = d3.select(svgRef.current)
-    const width = 800
+    const width = 1500
     const height = 1000
 
     // Clear previous contents of the SVG element
@@ -26,9 +26,9 @@ const ForceGraph = ({ data }) => {
         d3
           .forceLink(data.links)
           .id((d) => d.id)
-          .distance(175),
+          .distance(125),
       )
-      .force('charge', d3.forceManyBody().strength(-130))
+      .force('charge', d3.forceManyBody().strength(-75))
       .force('center', d3.forceCenter(width / 2, height / 2))
 
     // Create link elements and append them to the SVG
@@ -64,7 +64,7 @@ const ForceGraph = ({ data }) => {
       .data(data.nodes)
       .enter()
       .append('circle')
-      .attr('r', 20)
+      .attr('r', 15)
       .attr('fill', '#fff')
       .attr('stroke', '#000') // Border color
       .call(
