@@ -9,19 +9,26 @@ interface NetworkProps {
 }
 
 const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
-  const [graphData, setGraphData] = useState<GraphData>()
+  const [graphData, setGraphData] = useState<GraphData | null>(null)
 
   useEffect(() => {
-    let data = csvStringToJson(sanitizeCsvString(csvData))
-    setGraphData(data)
-  }, [])
+    let data = csvStringToJson(csvData)
+    if (data.nodes.length > 2 && data.links.length > 1) {
+      setGraphData(data)
+    } else {
+      setGraphData(null)
+    }
+  }, [csvData])
 
   if (!graphData) {
-    return <div>Loading...</div>
+    return (
+      <div className="flex items-center justify-center h-full w-full my-10">
+        Graph Unavailable
+      </div>
+    )
   }
-
   return (
-    <div className="flex items-center space-x-5 px-10 max-w-4xl mx-auto">
+    <div className="flex items-center space-x-5 px-10 w-full mx-auto">
       <ForceGraph data={graphData} />
     </div>
   )

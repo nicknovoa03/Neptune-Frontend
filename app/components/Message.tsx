@@ -1,10 +1,9 @@
 'use client'
 
-import { DocumentData } from 'firebase/firestore'
+import Network from './Network'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import React from 'react'
-import Network from './Network'
+import { DocumentData } from 'firebase/firestore'
 
 type Props = {
   message: DocumentData
@@ -13,6 +12,7 @@ type Props = {
 function Message({ message }: Props) {
   const isNeptuneGPT = message.user.name === 'NeptuneGPT'
   const response = message.text as string
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -32,9 +32,11 @@ function Message({ message }: Props) {
           {response}
         </p>
       </div>
-      <div>
-        <Network csvData={response} />
-      </div>
+      {isNeptuneGPT && (
+        <div>
+          <Network csvData={response} />
+        </div>
+      )}
     </motion.div>
   )
 }
