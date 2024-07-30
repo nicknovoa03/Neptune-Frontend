@@ -30,61 +30,69 @@ export async function GenerateResponse({
   prompt,
 }: RunAssistantProps) {
 
-  const instructions = "Please respond to this question with a comma separated values table that includes\
-                        'source,' 'target,' and 'association', make sure to include the title row.\
-                         Create a source target network list of people\
-                         who work on a given subject, source and target must be people not organizations,\
-                         and type is the assosiation of the two people.\
-                         Print the entire list. Do not limit responses give the entire network of associations.\
-                         Remove the source tags in the response."
+
+  const instructions = `
+    Please respond to this question with a comma separated values table that includes
+    'source,' 'target,' and 'association', make sure to include the title row.
+    Create a source target network list of people
+    who work on ${prompt}, source and target must be people not organizations,
+    and type is the assosiation of the two people.
+    Print the entire list. Do not limit responses give the entire network of associations.
+    Remove the source tags in the response.
+    Do not include any Source tags in the response.
+  `;
+
+  const instructions3 = `
+  Generate a list of relationships between various entities in the following format: 'source, target, association'. 
+  The list should be provided as comma-separated values (CSV) and include at least 10 entries. 
+  Ensure the sources, targets, and associations are varied and relevant.
+  `
 
   try {
-
     // Step 1: Create a thread
-    const thread = await createThread()
-    console.log("Thread created")
+    const thread = await createThread();
+    console.log("Thread created");
     // Step 2: Add a message to the thread
     await addMessageToThread({
       threadId: thread.id,
       role: 'user',
       content: prompt,
-    })
-    console.log('Message added to thread')
+    });
+    console.log('Message added to thread');
     // Step 3: Run the thread
     const messages = await runThread({
       threadId: thread.id,
       assistant_id: process.env.ASSISTANT_ID!,
       instructions: instructions,
-    })
-    console.log('Thread run completed')
+    });
+    console.log('Thread run completed');
 
-    // Create reponse variable
-    let response = ''
+    // Create response variable
+    let response = '';
 
     // loop through all the messages in the returned thread
-    // Save the last message as the reponse from the API
+    // Save the last message as the response from the API
     for (const message of messages!.data.reverse()) {
       if (message.content[0].type == 'text') {
         //console.log(`${message.role} > ${message.content[0].text.value}`)
-        response = message.content[0].text.value
+        response = message.content[0].text.value;
       }
     }
-    return response
+    return response;
   } catch (error) {
-    console.error('Run Assistant Error:', error)
+    console.error('Run Assistant Error:', error);
   }
 }
-
 
 // TODO: how to use this as a server action
 /*
 async function SaveMessages({ session, chatId, prompt, response }: RunAskQuestionProps) {
   try {
     // Check for prompt and session
-    if (!prompt && !session) return
+    if (!prompt && !session) return;
 
     // Trim input and clear prompt
-    const input = prompt.trim()
+    const input = prompt.trim();
 
     // Create Message object to save to firebase
     const userMessage: Message = {
@@ -97,9 +105,9 @@ async function SaveMessages({ session, chatId, prompt, response }: RunAskQuestio
           session?.user?.image ||
           `https://ui-avatars.com/api/?name=${session?.user?.name!}`,
       },
-    }
+    };
 
-    console.log(userMessage)
+    console.log(userMessage);
     // Save Message to firebase
     await addDoc(
       collection(
@@ -107,7 +115,7 @@ async function SaveMessages({ session, chatId, prompt, response }: RunAskQuestio
         `users/${session?.user?.email!}/chats/${chatId}/messages`,
       ),
       userMessage,
-    )
+    );
     // Create message for the DB
     const neptuneMessage: Message = {
       text: response || 'NeptuneGPT unable to answer that!',
@@ -117,8 +125,8 @@ async function SaveMessages({ session, chatId, prompt, response }: RunAskQuestio
         email: 'NeptuneGPT',
         avatar: chatGPTLogo.src,
       },
-    }
-    console.log(neptuneMessage)
+    };
+    console.log(neptuneMessage);
     // Add message to DB
     await addDoc(
       collection(
@@ -126,11 +134,11 @@ async function SaveMessages({ session, chatId, prompt, response }: RunAskQuestio
         `users/${session?.user?.email!}/chats/${chatId}/messages`,
       ),
       neptuneMessage,
-    )
+    );
 
 
   } catch (error: any) {
-    console.log(error.message)
+    console.log(error.message);
   }
 
 }
