@@ -10,7 +10,7 @@ const ForceGraph = ({ data }) => {
     // Select the SVG element and set its dimensions
     const svg = d3.select(svgRef.current)
     const width = 800
-    const height = 600
+    const height = 1000
 
     // Clear previous contents of the SVG element
     svg.selectAll('*').remove()
@@ -26,9 +26,9 @@ const ForceGraph = ({ data }) => {
         d3
           .forceLink(data.links)
           .id((d) => d.id)
-          .distance(100),
+          .distance(175),
       )
-      .force('charge', d3.forceManyBody().strength(-400))
+      .force('charge', d3.forceManyBody().strength(-130))
       .force('center', d3.forceCenter(width / 2, height / 2))
 
     // Create link elements and append them to the SVG
@@ -39,8 +39,9 @@ const ForceGraph = ({ data }) => {
       .data(data.links)
       .enter()
       .append('line')
-      .attr('stroke-width', 2)
+      .attr('stroke-width', 6)
       .attr('stroke', '#999')
+      .attr('opacity', 0.7) // Semi-transparent links
 
     // Create text elements for associations and append them to the SVG
     const linkText = svg
@@ -50,11 +51,12 @@ const ForceGraph = ({ data }) => {
       .data(data.links)
       .enter()
       .append('text')
-      .attr('font-size', 10)
-      .attr('fill', '#000')
+      .attr('font-size', 12)
+      .attr('fill', '#ccc')
       .text((d) => d.association)
 
     // Create node elements and append them to the SVG
+    // Enhance node elements
     const node = svg
       .append('g')
       .attr('class', 'nodes')
@@ -62,8 +64,9 @@ const ForceGraph = ({ data }) => {
       .data(data.nodes)
       .enter()
       .append('circle')
-      .attr('r', 10)
-      .attr('fill', '#69b3a2')
+      .attr('r', 20)
+      .attr('fill', '#fff')
+      .attr('stroke', '#000') // Border color
       .call(
         d3
           .drag()
@@ -71,6 +74,15 @@ const ForceGraph = ({ data }) => {
           .on('drag', dragged)
           .on('end', dragended),
       )
+      .on('mouseover', function (event, d) {
+        d3.select(this).attr('fill', '#0000ff') // Change color to blue on hover
+      })
+      .on('mouseout', function (event, d) {
+        d3.select(this).attr('fill', '#fff') // Revert color on mouse out
+      })
+      .on('click', function (event, d) {
+        console.log('Node clicked:', d)
+      })
 
     // Create text elements for node IDs and append them to the SVG
     const nodeText = svg
@@ -84,7 +96,6 @@ const ForceGraph = ({ data }) => {
       .attr('fill', '#fff')
       .text((d) => d.id)
 
-
     // Add tooltips to nodes
     node.append('title').text((d) => d.id)
 
@@ -97,12 +108,12 @@ const ForceGraph = ({ data }) => {
         .attr('y2', (d) => d.target.y)
 
       linkText
-        .attr('x', (d) => (d.source.x + d.target.x) / 2)
+        .attr('x', (d) => (d.source.x + d.target.x + 20) / 2)
         .attr('y', (d) => (d.source.y + d.target.y) / 2)
 
       node.attr('cx', (d) => d.x).attr('cy', (d) => d.y)
 
-      nodeText.attr('x', (d) => d.x).attr('y', (d) => d.y - 15) // Adjust the position of the text relative to the node
+      nodeText.attr('x', (d) => d.x + 30).attr('y', (d) => d.y + 5) // Adjust the position of the text relative to the node
     })
 
     // Define drag event handlers for the nodes
@@ -110,11 +121,12 @@ const ForceGraph = ({ data }) => {
       if (!event.active) simulation.alphaTarget(0.3).restart()
       d.fx = d.x
       d.fy = d.y
+      simulation.force('charge', null) // Disable charge force during drag
     }
 
     function dragged(event, d) {
-      d.fx = event.x
-      d.fy = event.y
+      d.fx = Math.max(0, Math.min(width, event.x))
+      d.fy = Math.max(0, Math.min(height, event.y))
     }
 
     function dragended(event, d) {
