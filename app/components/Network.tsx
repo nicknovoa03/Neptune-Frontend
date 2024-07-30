@@ -1,21 +1,28 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ForceGraph from './d3/ForceGraph'
+import { csvStringToJson } from '../utils/d3/csvToJson' // Adjust the import path as necessary
+import { GraphData } from '@/typing'
+import { sanitizeCsvString } from '../utils/d3/sanitizeCsvString'
 
-const Network: React.FC = () => {
-  const data = {
-    nodes: [{ id: 'A' }, { id: 'B' }, { id: 'C' }, { id: 'D' }],
-    links: [
-      { source: 'A', target: 'B', association: 'Friend' },
-      { source: 'A', target: 'C', association: 'Colleague' },
-      { source: 'B', target: 'C', association: 'Neighbor' },
-      { source: 'C', target: 'D', association: 'Family' },
-    ],
+interface NetworkProps {
+  csvData: string
+}
+
+const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
+  const [graphData, setGraphData] = useState<GraphData>()
+
+  useEffect(() => {
+    let data = csvStringToJson(sanitizeCsvString(csvData))
+    setGraphData(data)
+  }, [])
+
+  if (!graphData) {
+    return <div>Loading...</div>
   }
 
   return (
-    <div className="App">
-      <h1>CSV to Network Graph with D3 and React</h1>
-      <ForceGraph data={data} />
+    <div className="flex items-center space-x-5 px-10 max-w-4xl mx-auto">
+      <ForceGraph data={graphData} />
     </div>
   )
 }
