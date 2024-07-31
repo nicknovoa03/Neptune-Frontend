@@ -2,16 +2,22 @@ import React, { useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 
 // Define the ForceGraph component
-const ForceGraph = ({ data }) => {
+const ForceGraph = ({ data, scaleFactor }) => {
   // Create a ref to the SVG element
   const svgRef = useRef(null)
 
   useEffect(() => {
     // Select the SVG element and set its dimensions
     const svg = d3.select(svgRef.current)
-    const width = 1500
-    const height = 1000
-
+    const width = 1500 * scaleFactor
+    const height = 1000 * scaleFactor
+    const nodeRadius = 15 * scaleFactor
+    const nodeTextSize = 15 * scaleFactor
+    const linkWidth = 6 * scaleFactor
+    const linkDistance = 150 * scaleFactor
+    const linkTextSize = 12 * scaleFactor
+    const chargeStrength = -50 * scaleFactor
+    const collisionRadius = 50 * scaleFactor
     // Clear previous contents of the SVG element
     svg.selectAll('*').remove()
 
@@ -26,11 +32,11 @@ const ForceGraph = ({ data }) => {
         d3
           .forceLink(data.links)
           .id((d) => d.id)
-          .distance(150),
+          .distance(linkDistance),
       )
-      .force('charge', d3.forceManyBody().strength(-50))
+      .force('charge', d3.forceManyBody().strength(chargeStrength))
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collide', d3.forceCollide().radius(50)) // Add collision force with a radius of 50
+      .force('collide', d3.forceCollide().radius(collisionRadius)) // Add collision force with a radius of 50
 
     // Create link elements and append them to the SVG
     const link = svg
@@ -40,7 +46,7 @@ const ForceGraph = ({ data }) => {
       .data(data.links)
       .enter()
       .append('line')
-      .attr('stroke-width', 6)
+      .attr('stroke-width', linkWidth)
       .attr('stroke', '#999')
       .attr('opacity', 0.7) // Semi-transparent links
 
@@ -52,7 +58,7 @@ const ForceGraph = ({ data }) => {
       .data(data.links)
       .enter()
       .append('text')
-      .attr('font-size', 12)
+      .attr('font-size', linkTextSize)
       .attr('fill', '#ccc')
       .text((d) => d.association)
 
@@ -65,7 +71,7 @@ const ForceGraph = ({ data }) => {
       .data(data.nodes)
       .enter()
       .append('circle')
-      .attr('r', 15)
+      .attr('r', nodeRadius)
       .attr('fill', '#fff')
       .attr('stroke', '#000') // Border color
       .call(
@@ -93,7 +99,7 @@ const ForceGraph = ({ data }) => {
       .data(data.nodes)
       .enter()
       .append('text')
-      .attr('font-size', 15)
+      .attr('font-size', nodeTextSize)
       .attr('fill', '#fff')
       .text((d) => d.id)
 

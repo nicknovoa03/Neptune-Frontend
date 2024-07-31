@@ -30,11 +30,11 @@ export default async function RootLayout({
             <Login />
           ) : (
             <div className="flex overflow-hidden">
-              <div className="">
+              <div className="flex-shrink-0">
                 <Sidebar />
               </div>
               <ClientProvider />
-              <div className="flex-1">{children}</div>
+              <div className="flex-1 min-w-0">{children}</div>
             </div>
           )}
         </SessionProvider>

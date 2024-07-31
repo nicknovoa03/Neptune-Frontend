@@ -10,6 +10,7 @@ interface NetworkProps {
 
 const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
   const [graphData, setGraphData] = useState<GraphData | null>(null)
+  const [scaleFactor, setScaleFactor] = useState<number>(0.3)
 
   useEffect(() => {
     let data = csvStringToJson(csvData)
@@ -20,6 +21,25 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
     }
   }, [csvData])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 600) {
+        setScaleFactor(0.25)
+      } else if (window.innerWidth < 1200) {
+        setScaleFactor(0.75)
+      } else {
+        setScaleFactor(1)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize() // Set initial value
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   if (!graphData) {
     return (
       <div className="flex items-center justify-center h-full w-full my-10">
@@ -29,7 +49,7 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
   }
   return (
     <div className="flex items-center space-x-5 px-10 w-full mx-auto">
-      <ForceGraph data={graphData} />
+      <ForceGraph data={graphData} scaleFactor={scaleFactor} />
     </div>
   )
 }
