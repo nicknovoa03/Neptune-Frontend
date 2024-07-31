@@ -34,7 +34,7 @@ function Sidebar({}: Props) {
       {open === false ? (
         <div
           onClick={() => toggleSidebar()}
-          className="flex fixed max-w-[50px] sm:min-w-[50px] sm:ml-2 p-2 bg-[#434654] sm:justify-center items-center hover:bg-[#434654] bg- sm:py-3 sm:mx-6 sm:my-4 border-gray-500 border rounded-lg cursor-pointer"
+          className="flex fixed max-w-[50px] sm:min-w-[50px] sm:ml-2 p-2 bg-[#434654] sm:justify-center items-center hover:bg-[#434654] bg- sm:py-3 sm:mx-6 sm:my-4 border-gray-500 border rounded-lg cursor-pointer m-3"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
