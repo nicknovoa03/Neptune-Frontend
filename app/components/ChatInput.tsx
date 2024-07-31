@@ -9,6 +9,7 @@ import { firestore } from '../firebase/firebase'
 import { GenerateResponse } from '../api/RunAssistant'
 
 import chatGPTLogo from '@/app/public/ChatGPTLogo.png'
+import { Message } from '@/typing'
 
 type Props = {
   chatId: string
@@ -63,7 +64,7 @@ function ChatInput({ chatId }: Props) {
           chatId,
           prompt: input,
         })
-        console.log(response)
+        console.log('respsonse: ', response)
         // Create message for the DB
         const message: Message = {
           text: response || 'NeptuneGPT unable to answer that!',
