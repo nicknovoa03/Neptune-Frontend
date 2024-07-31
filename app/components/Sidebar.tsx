@@ -53,7 +53,7 @@ function Sidebar({}: Props) {
         </div>
       ) : (
         <div
-          className={`p-2 flex flex-col h-screen bg-[#202123] ${open ? 'w-72 transition-w ease-in duration-2000 overflow-hidden' : 'w-0 transition-w ease-in duration-2000'}`}
+          className={`p-2 flex flex-col h-screen bg-[#202123] ${open ? 'w-72 transition-w ease-in duration-2000 overflow-hidden' : 'w-0 transition-w ease-in duration-2000'} sm:fixed sm:top-0 sm:left-0 sm:w-full sm:h-auto sm:z-50`}
         >
           <div className="no-scrollbar flex-1">
             <NewChat session={session} toggleSidebar={toggleSidebar} />
