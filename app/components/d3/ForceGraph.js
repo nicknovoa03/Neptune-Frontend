@@ -26,10 +26,11 @@ const ForceGraph = ({ data }) => {
         d3
           .forceLink(data.links)
           .id((d) => d.id)
-          .distance(125),
+          .distance(150),
       )
-      .force('charge', d3.forceManyBody().strength(-75))
+      .force('charge', d3.forceManyBody().strength(-50))
       .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('collide', d3.forceCollide().radius(50)) // Add collision force with a radius of 50
 
     // Create link elements and append them to the SVG
     const link = svg
