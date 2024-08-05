@@ -106,7 +106,7 @@ function ChatInput({ chatId }: Props) {
           <form onSubmit={askQuestion} className="px-4 py-3 space-x- flex">
             <input
               type="text"
-              placeholder="Type your message here..."
+              placeholder="Enter a topic..."
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               disabled={!session}
