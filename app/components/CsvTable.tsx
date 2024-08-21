@@ -20,15 +20,17 @@ const CsvTable: React.FC<CsvTableProps> = ({ csvData }) => {
           <tr>
             <th className="px-4 py-2 border-b">Person</th>
             <th className="px-4 py-2 border-b">Organization</th>
-            <th className="px-4 py-2 border-b">Area of Expertise</th>
+            <th className="px-4 py-2 border-b">Title</th>
+            <th className="px-4 py-2 border-b">Team</th>
           </tr>
         </thead>
         <tbody>
           {jsonArray.map((item, index) => (
             <tr key={index}>
+              <td className="px-4 py-2 border-b">{item.interviewee}</td>
               <td className="px-4 py-2 border-b">{item.organization}</td>
-              <td className="px-4 py-2 border-b">{item.person}</td>
-              <td className="px-4 py-2 border-b">{item.areaOfExpertise}</td>
+              <td className="px-4 py-2 border-b">{item.title}</td>
+              <td className="px-4 py-2 border-b">{item.team}</td>
             </tr>
           ))}
         </tbody>

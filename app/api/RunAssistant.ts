@@ -39,7 +39,7 @@ export async function GenerateResponse({
   `
 
   const instructions = ` Please respond to this question with a comma separated values table that includes
-    'organization,' 'person,' and 'expertise', make sure to include the title row.
+    'interviewee','organization','title', and 'team', make sure to include the title row.
     Create a list of organizations that work on ${prompt}, and the people who work there.    
     Print the entire list. Do not limit responses give the entire network of associations.
     Remove the source tags in the response.
