@@ -42,12 +42,6 @@ export async function GenerateResponse({
     Do not include any Source tags in the response.
   `;
 
-  const instructions3 = `
-  Generate a list of relationships between various entities in the following format: 'source, target, association'. 
-  The list should be provided as comma-separated values (CSV) and include at least 10 entries. 
-  Ensure the sources, targets, and associations are varied and relevant.
-  `
-
   try {
     // Step 1: Create a thread
     const thread = await createThread();
