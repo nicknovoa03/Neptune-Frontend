@@ -8,7 +8,6 @@ import {
 import * as dotenv from 'dotenv'
 import { Session } from 'next-auth'
 
-
 dotenv.config()
 
 type RunAssistantProps = {
@@ -23,14 +22,11 @@ type RunAskQuestionProps = {
   response: string
 }
 
-
 export async function GenerateResponse({
   session,
   chatId,
   prompt,
 }: RunAssistantProps) {
-
-
   const instructions2 = `
     Please respond to this question with a comma separated values table that includes
     'source,' 'target,' and 'association', make sure to include the title row.
@@ -40,7 +36,7 @@ export async function GenerateResponse({
     Print the entire list. Do not limit responses give the entire network of associations.
     Remove the source tags in the response.
     Do not include any Source tags in the response.
-  `;
+  `
 
   const instructions = ` Please respond to this question with a comma separated values table that includes
     'organization,' 'person,' and 'expertise', make sure to include the title row.
@@ -51,37 +47,37 @@ export async function GenerateResponse({
 
   try {
     // Step 1: Create a thread
-    const thread = await createThread();
-    console.log("Thread created");
+    const thread = await createThread()
+    console.log('Thread created')
     // Step 2: Add a message to the thread
     await addMessageToThread({
       threadId: thread.id,
       role: 'user',
       content: prompt,
-    });
-    console.log('Message added to thread');
+    })
+    console.log('Message added to thread')
     // Step 3: Run the thread
     const messages = await runThread({
       threadId: thread.id,
       assistant_id: process.env.ASSISTANT_ID!,
       instructions: instructions,
-    });
-    console.log('Thread run completed');
+    })
+    console.log('Thread run completed')
 
     // Create response variable
-    let response = '';
+    let response = ''
 
     // loop through all the messages in the returned thread
     // Save the last message as the response from the API
     for (const message of messages!.data.reverse()) {
       if (message.content[0].type == 'text') {
         //console.log(`${message.role} > ${message.content[0].text.value}`)
-        response = message.content[0].text.value;
+        response = message.content[0].text.value
       }
     }
-    return response;
+    return response
   } catch (error) {
-    console.error('Run Assistant Error:', error);
+    console.error('Run Assistant Error:', error)
   }
 }
 
