@@ -14,10 +14,10 @@ const ForceGraph = ({ data, scaleFactor }) => {
     const nodeRadius = 15 * scaleFactor
     const nodeTextSize = 15 * scaleFactor
     const linkWidth = 6 * scaleFactor
-    const linkDistance = 150 * scaleFactor
+    const linkDistance = 175 * scaleFactor
     const linkTextSize = 12 * scaleFactor
     const chargeStrength = -50 * scaleFactor
-    const collisionRadius = 50 * scaleFactor
+    const collisionRadius = 100 * scaleFactor
     // Clear previous contents of the SVG element
     svg.selectAll('*').remove()
 
