@@ -31,7 +31,7 @@ export async function GenerateResponse({
 }: RunAssistantProps) {
 
 
-  const instructions = `
+  const instructions2 = `
     Please respond to this question with a comma separated values table that includes
     'source,' 'target,' and 'association', make sure to include the title row.
     Create a source target network list of people
@@ -41,6 +41,13 @@ export async function GenerateResponse({
     Remove the source tags in the response.
     Do not include any Source tags in the response.
   `;
+
+  const instructions = ` Please respond to this question with a comma separated values table that includes
+    'organization,' 'person,' and 'expertise', make sure to include the title row.
+    Create a list of organizations that work on ${prompt}, and the people who work there.    
+    Print the entire list. Do not limit responses give the entire network of associations.
+    Remove the source tags in the response.
+    Do not include any Source tags in the response.`
 
   try {
     // Step 1: Create a thread
