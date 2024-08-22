@@ -37,7 +37,7 @@ const CsvTable: React.FC<CsvTableProps> = ({ csvData }) => {
           {jsonArray.map((item, index) => (
             <tr
               key={index}
-              className="last:border-0 border-b border-[var(--color-bg-black)]"
+              className="last:border-0 border-b border-[var(--color-bg-black)] text-center"
             >
               <td className="px-4 py-2 ">{item.interviewee}</td>
               <td className="px-4 py-2">{item.organization}</td>
