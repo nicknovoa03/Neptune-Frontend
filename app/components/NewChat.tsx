@@ -17,7 +17,7 @@ function NewChat({ session, toggleSidebar }: Props) {
   return (
     <div className="flex">
       <div
-        className="chatRow border-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-quaternary)] border flex-1 justify-start rounded-lg"
+        className="chatRow text-[var(--color-bg-white)] border-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-quaternary)] border flex-1 justify-start rounded-lg"
         onClick={newChatAction}
       >
         <svg

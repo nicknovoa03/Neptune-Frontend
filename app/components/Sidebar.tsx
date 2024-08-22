@@ -58,12 +58,12 @@ function Sidebar({}: Props) {
         >
           <div className="no-scrollbar flex-1">
             <NewChat session={session} toggleSidebar={toggleSidebar} />
-            <p className="text-[var(--color-bg-white)] mt-4 ml-4 pb-0 text-sm">
+            <p className="text-[var(--color-text-gray-200)] mt-4 ml-4 pb-0 text-sm">
               Previous Chats
             </p>
             <div className="flex flex-col space-y-2 my-2">
               {loading && (
-                <div className="animate-pulse text-center text-white">
+                <div className="animate-pulse text-center text-[var(--color-bg-white)]">
                   <p>Loading Chats...</p>
                 </div>
               )}
@@ -89,10 +89,12 @@ function Sidebar({}: Props) {
                   alt={session?.user?.name!}
                   className="h-8 w-8 rounded-sm cursor-pointer hover:opacity-50"
                 />
-                <p>{session?.user?.name}</p>
+                <p className="text-[var(--color-bg-white)]">
+                  {session?.user?.name}
+                </p>
               </div>
               <div
-                className="chatRow items-center justify-start gap-5"
+                className="chatRow items-center justify-start gap-5 text-[var(--color-bg-white)]"
                 onClick={() => signOut()}
               >
                 <svg
