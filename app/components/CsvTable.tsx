@@ -1,7 +1,5 @@
 import React from 'react'
 import { csvStringToJson } from '../utils/csvToJsonTable'
-import { sanitizeCsvString } from '../utils/d3/sanitizeCsvString'
-import { CSVRecord } from '@/typing'
 
 interface CsvTableProps {
   csvData: string
