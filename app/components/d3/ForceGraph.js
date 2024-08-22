@@ -146,7 +146,7 @@ const ForceGraph = ({ data, scaleFactor }) => {
     return () => {
       simulation.stop()
     }
-  }, [data])
+  }, [data, scaleFactor])
 
   // Render the SVG element
   return <svg ref={svgRef}></svg>
