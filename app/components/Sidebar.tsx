@@ -34,7 +34,7 @@ function Sidebar({}: Props) {
       {open === false ? (
         <div
           onClick={() => toggleSidebar()}
-          className="flex fixed max-w-[50px] sm:min-w-[50px] sm:ml-2 p-2 bg-[var(--color-bg-quaternary)] sm:justify-center items-center hover:bg-[var(--color-bg-tertiary)] bg- sm:py-3 sm:mx-6 sm:my-4 border-gray-500 border rounded-lg cursor-pointer m-3"
+          className="flex fixed max-w-[50px] sm:min-w-[50px] sm:ml-2 p-2 bg-[var(--color-bg-quaternary)] sm:justify-center items-center hover:bg-[var(--color-bg-tertiary)] bg- sm:py-3 sm:mx-6 sm:my-4 border rounded-lg cursor-pointer m-3"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ function Sidebar({}: Props) {
         </div>
       ) : (
         <div
-          className={`p-2 flex flex-col h-screen border-r-2 bg-[var(--color-bg-quaternary)] border-[var(--color-bg-white)] ${open ? 'w-72 transition-w ease-in duration-2000 overflow-hidden' : 'w-0 transition-w ease-in duration-2000'}`}
+          className={`p-2 flex flex-col h-screen border-r-2 bg-[var(--color-bg-quaternary)] border-[var(--color-bg-black)] ${open ? 'w-72 transition-w ease-in duration-2000 overflow-hidden' : 'w-0 transition-w ease-in duration-2000'}`}
         >
           <div className="no-scrollbar flex-1">
             <NewChat session={session} toggleSidebar={toggleSidebar} />

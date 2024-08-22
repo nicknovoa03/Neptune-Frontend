@@ -110,7 +110,7 @@ function ChatInput({ chatId }: Props) {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               disabled={!session}
-              className={`text-[var(--color-bg-white)] bg-transparent focus:outline-none flex-1 disabled:cursor-not-allowed disabled:text-gray-300 ${
+              className={`placeholder:text-[var(--color-text-gray-200)] text-[var(--color-bg-white)]  bg-transparent focus:outline-none flex-1 disabled:cursor-not-allowed disabled:text-gray-300 ${
                 !loading && 'animate-pulse'
               }`}
             />
