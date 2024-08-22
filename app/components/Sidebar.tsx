@@ -82,13 +82,13 @@ function Sidebar({}: Props) {
           {session && (
             <div className="border-t-2 boder-[var(--color-bg-white)]">
               <div className="py-2 rounded-2xl">
-                <div className="my-2 shadow-depth chatRow items-center justify-start gap-5 hover:bg-[var(--color-bg-tertiary)] rounded-2xl">
+                <div className="my-2 shadow-depth chatRow items-center justify-start gap-5 hover:bg-[var(--color-bg-tertiary)] rounded-2xl pointer-events-none">
                   <Image
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={200}
                     src={session?.user?.image!}
                     alt={session?.user?.name!}
-                    className="h-8 w-8 rounded-sm cursor-pointer hover:opacity-50 "
+                    className="h-10 w-10 rounded-lg cursor-pointer hover:opacity-50"
                   />
                   <p className="text-[var(--color-bg-white)]">
                     {session?.user?.name}
