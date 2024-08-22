@@ -34,7 +34,7 @@ function Sidebar({}: Props) {
       {open === false ? (
         <div
           onClick={() => toggleSidebar()}
-          className="flex fixed max-w-[50px] sm:min-w-[50px] sm:ml-2 p-2 bg-[#434654] sm:justify-center items-center hover:bg-[#434654] bg- sm:py-3 sm:mx-6 sm:my-4 border-gray-500 border rounded-lg cursor-pointer m-3"
+          className="flex fixed max-w-[50px] sm:min-w-[50px] sm:ml-2 p-2 bg-[var(--color-bg-tertiary)] sm:justify-center items-center hover:bg-[#434654] bg- sm:py-3 sm:mx-6 sm:my-4 border-gray-500 border rounded-lg cursor-pointer m-3"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ function Sidebar({}: Props) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-5 h-5 text-white"
+            className="w-5 h-5 text-[var(--color-bg-white)]"
           >
             <path
               strokeLinecap="round"
@@ -53,11 +53,12 @@ function Sidebar({}: Props) {
         </div>
       ) : (
         <div
-          className={`p-2 flex flex-col h-screen bg-[#202123] ${open ? 'w-72 transition-w ease-in duration-2000 overflow-hidden' : 'w-0 transition-w ease-in duration-2000'}`}
+          className={`p-2 flex flex-col h-screen border-2 border-[var(--color-bg-black)] ${open ? 'w-72 transition-w ease-in duration-2000 overflow-hidden' : 'w-0 transition-w ease-in duration-2000'}`}
+          style={{ backgroundColor: 'var(--color-bg-primary)' }}
         >
           <div className="no-scrollbar flex-1">
             <NewChat session={session} toggleSidebar={toggleSidebar} />
-            <p className="text-gray-400 mt-4 ml-4 pb-0 text-sm">
+            <p className="text-[var(--color-bg-white)] mt-4 ml-4 pb-0 text-sm">
               Previous Chats
             </p>
             <div className="flex flex-col space-y-2 my-2">
@@ -79,7 +80,7 @@ function Sidebar({}: Props) {
             </div>
           </div>
           {session && (
-            <div className="border-t border-gray-400 py-3">
+            <div className="border-t border-[var(--color-bg-secondary)] py-3">
               <div className="chatRow items-center justify-start gap-5">
                 <Image
                   width={100}

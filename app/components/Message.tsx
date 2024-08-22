@@ -19,7 +19,7 @@ function Message({ message }: Props) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className={`py-5 text-white ${isNeptuneGPT && 'bg-[#434654]'}`}
+      className={`py-5 text-[var(--color-bg-white)] ${isNeptuneGPT && 'bg-[var(--color-bg-quaternary)]'}`}
     >
       <div className="flex items-center space-x-5 px-10 max-w-4xl mx-auto">
         {!isNeptuneGPT && (
