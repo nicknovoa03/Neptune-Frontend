@@ -140,7 +140,7 @@ function ChatInput({ chatId }: Props) {
               <button
                 type="submit"
                 disabled={!session}
-                className="bg-[#11A37F] hover:opacity-70 text-white font-bold px-3 py-2 rounded-lg disabled:bg-[#40414F] disabled:cursor-not-allowed"
+                className="bg-[var(--color-bg-black)] hover:opacity-70 text-white font-bold px-3 py-2 rounded-lg disabled:bg-[var(--color-bg-primary)] disabled:cursor-not-allowed"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
