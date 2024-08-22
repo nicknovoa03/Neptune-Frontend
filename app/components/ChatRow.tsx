@@ -43,7 +43,7 @@ function ChatRow({ id, session }: Props) {
   return (
     <Link
       href={`/chat/${id}`}
-      className={`chatRow justify-center ${active && 'bg-[var(--color-bg-tertiary)]'}`}
+      className={`chatRow justify-center rounded-2xl hover:bg-[var(--color-bg-tertiary)] ${active && 'bg-[var(--color-bg-black)]'}`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +51,7 @@ function ChatRow({ id, session }: Props) {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="w-5 h-5 mr-1"
+        className="w-5 h-5 mr-1 text-[var(--color-bg-white)]"
       >
         <path
           strokeLinecap="round"
@@ -69,7 +69,7 @@ function ChatRow({ id, session }: Props) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-5 h-5 ml-3 text-[var(--color-bg-white)] hover:text-gray-100"
+          className="w-5 h-5 ml-3 text-[var(--color-bg-white)]"
           onClick={removeChat}
         >
           <path

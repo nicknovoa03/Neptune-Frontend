@@ -34,7 +34,7 @@ function Sidebar({}: Props) {
       {open === false ? (
         <div
           onClick={() => toggleSidebar()}
-          className="flex fixed max-w-[50px] sm:min-w-[50px] sm:ml-2 p-2 bg-[var(--color-bg-tertiary)] sm:justify-center items-center hover:bg-[#434654] bg- sm:py-3 sm:mx-6 sm:my-4 border-gray-500 border rounded-lg cursor-pointer m-3"
+          className="flex fixed max-w-[50px] sm:min-w-[50px] sm:ml-2 p-2 bg-[var(--color-bg-quaternary)] sm:justify-center items-center hover:bg-[var(--color-bg-tertiary)] bg- sm:py-3 sm:mx-6 sm:my-4 border-gray-500 border rounded-lg cursor-pointer m-3"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,8 +53,7 @@ function Sidebar({}: Props) {
         </div>
       ) : (
         <div
-          className={`p-2 flex flex-col h-screen border-2 border-[var(--color-bg-black)] ${open ? 'w-72 transition-w ease-in duration-2000 overflow-hidden' : 'w-0 transition-w ease-in duration-2000'}`}
-          style={{ backgroundColor: 'var(--color-bg-primary)' }}
+          className={`p-2 flex flex-col h-screen border-r-2 bg-[var(--color-bg-quaternary)] border-[var(--color-bg-white)] ${open ? 'w-72 transition-w ease-in duration-2000 overflow-hidden' : 'w-0 transition-w ease-in duration-2000'}`}
         >
           <div className="no-scrollbar flex-1">
             <NewChat session={session} toggleSidebar={toggleSidebar} />
@@ -80,8 +79,8 @@ function Sidebar({}: Props) {
             </div>
           </div>
           {session && (
-            <div className="border-t border-[var(--color-bg-secondary)] py-3">
-              <div className="chatRow items-center justify-start gap-5">
+            <div className="border-t border-[var(--color-bg-tertiary)] py-3 ">
+              <div className="chatRow items-center justify-start gap-5 hover:bg-[var(--color-bg-tertiary)] rounded-2xl">
                 <Image
                   width={100}
                   height={100}
@@ -94,7 +93,7 @@ function Sidebar({}: Props) {
                 </p>
               </div>
               <div
-                className="chatRow items-center justify-start gap-5 text-[var(--color-bg-white)]"
+                className="chatRow items-center justify-start gap-5 text-[var(--color-bg-white)] hover:bg-[var(--color-bg-tertiary)] rounded-2xl"
                 onClick={() => signOut()}
               >
                 <svg
@@ -103,7 +102,7 @@ function Sidebar({}: Props) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-6 h-6 text-[var(--color-bg-white)]"
                 >
                   <path
                     strokeLinecap="round"

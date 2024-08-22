@@ -24,7 +24,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-[var(--color-bg-primary)]`}>
+      <body className={`${inter.className} bg-[var(--color-bg-black)]`}>
         <SessionProvider session={session}>
           {!session ? (
             <Login />

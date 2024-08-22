@@ -19,7 +19,7 @@ function Message({ message }: Props) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className={`py-5 text-[var(--color-bg-white)] ${isNeptuneGPT && 'bg-[var(--color-bg-quaternary)]'}`}
+      className={`py-5 text-[var(--color-bg-white)] ${isNeptuneGPT ? 'bg-[var(--color-bg-terntiary)]' : 'bg-[var(--color-bg-quaternary)]'}`}
     >
       <div className="flex items-center space-x-5 px-10 max-w-4xl mx-auto">
         {!isNeptuneGPT && (
@@ -29,9 +29,9 @@ function Message({ message }: Props) {
               height={100}
               src={message.user.avatar}
               alt=""
-              className="h-6 w-6 sm:h-10 sm:w-10 rounded-sm"
+              className="h-6 w-6 sm:h-10 sm:w-10 rounded-sm "
             />
-            <p className="display-linebreak pt-1 text-sm sm:text-base">
+            <p className="display-linebreak pt-1 text-sm sm:text-base ">
               {response}
             </p>
           </>

@@ -12,23 +12,26 @@ const CsvTable: React.FC<CsvTableProps> = ({ csvData }) => {
   console.log('jsonArray', jsonArray)
 
   return (
-    <div className="overflow-x-auto">
-      <table className="min-w-full bg-black border border-gray-200">
+    <div className="overflow-x-auto border-2 border-[var(--color-bg-white)] rounded-2xl">
+      <table className="min-w-full bg-[var(--color-bg-quaternary)]">
         <thead>
-          <tr>
-            <th className="px-4 py-2 border-b">Person</th>
-            <th className="px-4 py-2 border-b">Organization</th>
-            <th className="px-4 py-2 border-b">Title</th>
-            <th className="px-4 py-2 border-b">Team</th>
+          <tr className="border-b border-[var(--color-bg-black)]">
+            <th className="px-4 py-2 ">Person</th>
+            <th className="px-4 py-2">Organization</th>
+            <th className="px-4 py-2 ">Title</th>
+            <th className="px-4 py-2 ">Team</th>
           </tr>
         </thead>
         <tbody>
           {jsonArray.map((item, index) => (
-            <tr key={index}>
-              <td className="px-4 py-2 border-b">{item.interviewee}</td>
-              <td className="px-4 py-2 border-b">{item.organization}</td>
-              <td className="px-4 py-2 border-b">{item.title}</td>
-              <td className="px-4 py-2 border-b">{item.team}</td>
+            <tr
+              key={index}
+              className="last:border-0 border-b border-[var(--color-bg-black)]"
+            >
+              <td className="px-4 py-2 ">{item.interviewee}</td>
+              <td className="px-4 py-2">{item.organization}</td>
+              <td className="px-4 py-2 ">{item.title}</td>
+              <td className="px-4 py-2 ">{item.team}</td>
             </tr>
           ))}
         </tbody>

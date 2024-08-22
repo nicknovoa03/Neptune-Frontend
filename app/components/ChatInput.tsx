@@ -102,7 +102,7 @@ function ChatInput({ chatId }: Props) {
   return (
     <div className="px-8">
       <div className="flex justify-center items-center pt-4 ">
-        <div className="bg-[var(--color-bg-quaternary)] text-[var(--color-bg-white)] rounded-lg text-base w-[100%] md:max-w-[70%] mb-4">
+        <div className="border-2 border-[var(--color-bg-white)] bg-[var(--color-bg-quaternary)] text-[var(--color-bg-black)] rounded-2xl text-base w-[100%] md:max-w-[70%] mb-4">
           <form onSubmit={askQuestion} className="px-4 py-3 space-x- flex">
             <input
               type="text"
@@ -110,7 +110,7 @@ function ChatInput({ chatId }: Props) {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               disabled={!session}
-              className={`bg-transparent focus:outline-none flex-1 disabled:cursor-not-allowed disabled:text-gray-300 ${
+              className={`text-[var(--color-bg-white)] bg-transparent focus:outline-none flex-1 disabled:cursor-not-allowed disabled:text-gray-300 ${
                 !loading && 'animate-pulse'
               }`}
             />
@@ -119,7 +119,7 @@ function ChatInput({ chatId }: Props) {
               <button
                 type="submit"
                 disabled={!prompt || !session}
-                className="hover:opacity-70 text-white font-bold px-3 py-2 rounded-lg disabled:bg-[var(--color-bg-primary)] disabled:cursor-not-allowed"
+                className="hover:opacity-70 text-white font-bold px-3 py-2 rounded-lg bg-[var(--color-bg-quaternary)] disabled:bg-[var(--color-bg-primary)] disabled:cursor-not-allowed"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
