@@ -5,6 +5,8 @@ Application created with NextJs, TailwindCSS, Typescript, Firebase for Google-Au
 ## Key Features
 * <b>Google Login/Signup:</b> Seamlessly sign in or sign up using your Google account for a hassle-free user experience.
 
+* <b>Firebase Firestore:</b> A flexible, scalable database for mobile, web, and server development from Firebase and Google Cloud Platform. It provides real-time data synchronization and offline support, making it ideal for building responsive and collaborative applications.
+
 * <b>Active Side Navigation:</b> Easily switch between previous chats and create new ones with the user-friendly sidebar.
 
 * <b>Log Out Button:</b> Conveniently located at the bottom of the sidebar, the log-out button allows you to sign out with a single click.
