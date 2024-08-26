@@ -101,8 +101,8 @@ function ChatInput({ chatId }: Props) {
 
   return (
     <div className="px-8">
-      <div className="flex justify-center items-center pt-4 ">
-        <div className="border-2 border-[var(--color-bg-white)] bg-[var(--color-bg-quaternary)] text-[var(--color-bg-black)] rounded-2xl text-base w-[100%] md:max-w-[70%] mb-4">
+      <div className="flex justify-center items-center ">
+        <div className="border-2 border-[var(--color-bg-white)] bg-[var(--color-bg-quaternary)] text-[var(--color-bg-black)] rounded-3xl text-base w-[100%] md:max-w-[100%] mb-4">
           <form onSubmit={askQuestion} className="px-4 py-3 space-x- flex">
             <input
               type="text"
@@ -110,7 +110,7 @@ function ChatInput({ chatId }: Props) {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               disabled={!session}
-              className={`placeholder:text-[var(--color-text-gray-200)] text-[var(--color-bg-white)]  bg-transparent focus:outline-none flex-1 disabled:cursor-not-allowed disabled:text-gray-300 ${
+              className={`md:min-w-[600px] placeholder:text-[var(--color-text-gray-200)] text-[var(--color-bg-white)]  bg-transparent focus:outline-none flex-1 disabled:cursor-not-allowed disabled:text-gray-300 ${
                 !loading && 'animate-pulse'
               }`}
             />

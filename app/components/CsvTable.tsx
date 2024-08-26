@@ -23,7 +23,7 @@ const CsvTable: React.FC<CsvTableProps> = ({ csvData }) => {
   }
 
   return (
-    <div className="overflow-x-auto border-2 border-[var(--color-bg-white)] text-[var(--color-text-gray-200)] rounded-2xl">
+    <div className="overflow-x-auto border-2 border-black text-[var(--color-text-gray-200)] rounded-2xl">
       <table className="min-w-full bg-[var(--color-bg-quaternary)] ">
         <thead>
           <tr className="border-b border-[var(--color-bg-black)]">

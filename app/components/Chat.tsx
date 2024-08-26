@@ -33,7 +33,7 @@ function Chat({ chatId }: Props) {
   }, [messages])
 
   return (
-    <div className="no-scrollbar flex-1 overflow-y-auto overflow-x-hidden">
+    <div className="no-scrollbar flex-1 overflow-y-auto max-w-3xl overflow-x-hidden mt-3">
       {messages?.empty && (
         <>
           <HomeContent />
