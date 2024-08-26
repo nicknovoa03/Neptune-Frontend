@@ -34,7 +34,9 @@ export default async function RootLayout({
                 <Sidebar />
               </div>
               <ClientProvider />
-              <div className="flex-1 min-w-0 flex flex-col items-center ">{children}</div>
+              <div className="flex-1 min-w-0 flex flex-col items-center ">
+                {children}
+              </div>
             </div>
           )}
         </SessionProvider>
