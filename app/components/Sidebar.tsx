@@ -10,6 +10,7 @@ import NewChat from './NewChat'
 import { firestore } from '../firebase/firebase'
 import React, { useState } from 'react'
 import Image from 'next/image'
+import defaultProfilePicture from '../public/NeptuneLogo.png'
 
 type Props = {}
 
@@ -86,7 +87,7 @@ function Sidebar({}: Props) {
                   <Image
                     width={200}
                     height={200}
-                    src={session?.user?.image!}
+                    src={session?.user?.image || defaultProfilePicture}
                     alt={session?.user?.name!}
                     className="h-10 w-10 rounded-lg cursor-pointer hover:opacity-50"
                   />
