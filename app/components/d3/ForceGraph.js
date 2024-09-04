@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 
 // Define the ForceGraph component
-const ForceGraph = ({ data, scaleFactor = 1 }) => {
+const ForceGraph = ({ data, scaleFactor }) => {
   // Create a ref to the SVG element
   const svgRef = useRef(null)
   const Maroon = '#8C1D40'
@@ -11,15 +11,15 @@ const ForceGraph = ({ data, scaleFactor = 1 }) => {
   useEffect(() => {
     // Select the SVG element and set its dimensions
     const svg = d3.select(svgRef.current)
-    const width = 1200
-    const height = 1000
+    const width = 1500 * scaleFactor
+    const height = 1200 * scaleFactor
     const nodeRadius = 15 * scaleFactor
     const nodeTextSize = 15 * scaleFactor
     const linkWidth = 6 * scaleFactor
-    const linkDistance = 175 * scaleFactor
+    const linkDistance = 200 * scaleFactor
     const linkTextSize = 12 * scaleFactor
-    const chargeStrength = -50
-    const collisionRadius = 25
+    const chargeStrength = -100 * scaleFactor
+    const collisionRadius = 5 * scaleFactor
     // Clear previous contents of the SVG element
     svg.selectAll('*').remove()
 
@@ -62,7 +62,6 @@ const ForceGraph = ({ data, scaleFactor = 1 }) => {
       .append('text')
       .attr('font-size', linkTextSize)
       .attr('fill', '#ccc')
-      .text((d) => d.association)
 
     // Create node elements and append them to the SVG
     // Enhance node elements

@@ -24,11 +24,11 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 600) {
-        setScaleFactor(0.25)
-      } else if (window.innerWidth < 1200) {
         setScaleFactor(0.5)
-      } else {
+      } else if (window.innerWidth < 1200) {
         setScaleFactor(0.75)
+      } else {
+        setScaleFactor(1)
       }
     }
 
@@ -49,7 +49,7 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
   }
   return (
     <div className="flex items-center m-5 mx-auto w-full border-2 border-[var(--color-bg-white)] rounded-2xl ">
-      <ForceGraph data={graphData} scaleFactor={1} />
+      <ForceGraph data={graphData} scaleFactor={scaleFactor} />
     </div>
   )
 }
