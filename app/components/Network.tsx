@@ -48,7 +48,7 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
     )
   }
   return (
-    <div className="flex items-center m-5 mx-auto w-full border-2 border-[var(--color-bg-white)] rounded-2xl ">
+    <div className="flex items-center m-5 mx-auto w-full border-2 border-[var(--color-bg-quaternary)] rounded-2xl ">
       <ForceGraph data={graphData} scaleFactor={scaleFactor} />
     </div>
   )
