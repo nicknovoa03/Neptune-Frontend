@@ -8,18 +8,24 @@ const ForceGraph = ({ data, scaleFactor }) => {
   const Maroon = '#8C1D40'
   const Gold = '#FFC627'
 
+  // Adjust scaleFactor if there are more than 50 nodes
+  let adjustedScaleFactor = scaleFactor
+  if (data.nodes.length > 50) {
+    adjustedScaleFactor = scaleFactor * 0.4 // Adjust the scale factor as needed
+  }
+
   useEffect(() => {
     // Select the SVG element and set its dimensions
     const svg = d3.select(svgRef.current)
     const width = 1500 * scaleFactor
     const height = 1200 * scaleFactor
-    const nodeRadius = 15 * scaleFactor
+    const nodeRadius = 15 * adjustedScaleFactor
     const nodeTextSize = 15 * scaleFactor
-    const linkWidth = 6 * scaleFactor
-    const linkDistance = 200 * scaleFactor
+    const linkWidth = 6 * adjustedScaleFactor
+    const linkDistance = 200 * adjustedScaleFactor
     const linkTextSize = 12 * scaleFactor
-    const chargeStrength = -100 * scaleFactor
-    const collisionRadius = 5 * scaleFactor
+    const chargeStrength = -90 * adjustedScaleFactor
+    const collisionRadius = 5 * adjustedScaleFactor
     // Clear previous contents of the SVG element
     svg.selectAll('*').remove()
 
