@@ -102,7 +102,7 @@ function ChatInput({ chatId }: Props) {
   return (
     <div className="px-8">
       <div className="flex justify-center items-center ">
-        <div className="border-2 border-[var(--color-bg-white)] bg-[var(--color-bg-quaternary)] text-[var(--color-bg-black)] rounded-3xl text-base w-[100%] md:max-w-[100%] mb-4">
+        <div className="border-2 border-[var(--color-bg-white)] bg-[var(--color-bg-quaternary)] text-[var(--color-bg-black)] rounded-3xl text-base  mb-4">
           <form onSubmit={askQuestion} className="px-4 py-3 space-x- flex">
             <input
               type="text"

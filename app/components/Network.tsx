@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ForceGraph from './d3/ForceGraph'
-import { csvStringToJson } from '../utils/d3/csvToJson' // Adjust the import path as necessary
+import { csvStringToJsonGraph } from '../utils/d3/csvToJsonGraph'
 import { GraphData } from '@/typing'
 import { sanitizeCsvString } from '../utils/d3/sanitizeCsvString'
 
@@ -13,7 +13,7 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
   const [scaleFactor, setScaleFactor] = useState<number>(0.3)
 
   useEffect(() => {
-    let data = csvStringToJson(csvData)
+    let data = csvStringToJsonGraph(csvData)
     if (data.nodes.length > 2 && data.links.length > 1) {
       setGraphData(data)
     } else {
@@ -26,9 +26,9 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
       if (window.innerWidth < 600) {
         setScaleFactor(0.25)
       } else if (window.innerWidth < 1200) {
-        setScaleFactor(0.75)
+        setScaleFactor(0.5)
       } else {
-        setScaleFactor(1)
+        setScaleFactor(0.75)
       }
     }
 
@@ -42,14 +42,14 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
 
   if (!graphData) {
     return (
-      <div className="flex items-center justify-center h-full w-full my-10">
+      <div className="flex items-center justify-center h-full my-10">
         Graph Unavailable
       </div>
     )
   }
   return (
-    <div className="flex items-center space-x-5 px-10 w-full mx-auto">
-      <ForceGraph data={graphData} scaleFactor={scaleFactor} />
+    <div className="flex items-center m-5 mx-auto w-full border-2 border-[var(--color-bg-white)] rounded-2xl ">
+      <ForceGraph data={graphData} scaleFactor={1} />
     </div>
   )
 }
