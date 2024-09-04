@@ -22,4 +22,3 @@ export function csvStringToJsonGraph(csvString: string) {
 
   return { nodes, links }
 }
-
