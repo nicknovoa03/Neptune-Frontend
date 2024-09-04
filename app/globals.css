@@ -4,11 +4,11 @@
 @tailwind utilities;
 
 :root {
-  --color-bg-primary: #8C1D40;
-  --color-bg-secondary: #FFC627;
+  --color-bg-primary: #8c1d40;
+  --color-bg-secondary: #ffc627;
   --color-bg-tertiary: #747474;
-  --color-bg-quaternary: #AF674B;
-  --color-bg-lightgray: #9B9B9B;
+  --color-bg-quaternary: #af674b;
+  --color-bg-lightgray: #9b9b9b;
   --color-bg-black: #212121;
   --color-bg-white: #ffffff;
   --color-text-primary: #2d333a;
@@ -41,7 +41,9 @@
   }
 
   .shadow-depth {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.2),
+      0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
