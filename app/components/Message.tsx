@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Network from './Network'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -13,6 +14,7 @@ type Props = {
 function Message({ message }: Props) {
   const isNeptuneGPT = message.user.name === 'NeptuneGPT'
   const response = message.text as string
+  const [showNetwork, setShowNetwork] = useState(false)
 
   return (
     <div
@@ -24,16 +26,29 @@ function Message({ message }: Props) {
         viewport={{ once: true }}
         className={`text-[var(--color-bg-white)] ${isNeptuneGPT ? 'bg-[var(--color-bg-terntiary)]' : 'bg-[var(--color-bg-quaternary)] rounded-2xl mx-5 py-3'}`}
       >
-        <div className=" space-x-5 px-5 mx-auto">
+        <div className="space-x-5 px-5 mx-auto">
           {!isNeptuneGPT && (
-            <p className="display-linebreak p-1 text-sm sm:text-base ">
+            <p className="display-linebreak p-1 text-sm sm:text-base">
               {response}
             </p>
           )}
         </div>
         {isNeptuneGPT && (
-          <div className="container mx-auto p-4 items-center w-full">
+          <div className="container mx-auto p-4 w-full">
             <CsvTable csvData={response} />
+            <div className="mt-4 justify-end">
+              <button
+                onClick={() => setShowNetwork(!showNetwork)}
+                className="bg-[var(--color-bg-quaternary)] text-white p-3 rounded-xl"
+              >
+                {showNetwork ? 'Hide Network' : 'Show Network'}
+              </button>
+              {showNetwork && (
+                <div>
+                  <Network csvData={response} />
+                </div>
+              )}
+            </div>
           </div>
         )}
       </motion.div>

@@ -2,22 +2,24 @@ import React, { useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 
 // Define the ForceGraph component
-const ForceGraph = ({ data, scaleFactor }) => {
+const ForceGraph = ({ data, scaleFactor = 1 }) => {
   // Create a ref to the SVG element
   const svgRef = useRef(null)
+  const Maroon = '#8C1D40'
+  const Gold = '#FFC627'
 
   useEffect(() => {
     // Select the SVG element and set its dimensions
     const svg = d3.select(svgRef.current)
-    const width = 1500 * scaleFactor
-    const height = 1000 * scaleFactor
+    const width = 1200
+    const height = 1000
     const nodeRadius = 15 * scaleFactor
     const nodeTextSize = 15 * scaleFactor
     const linkWidth = 6 * scaleFactor
     const linkDistance = 175 * scaleFactor
     const linkTextSize = 12 * scaleFactor
-    const chargeStrength = -50 * scaleFactor
-    const collisionRadius = 100 * scaleFactor
+    const chargeStrength = -50
+    const collisionRadius = 25
     // Clear previous contents of the SVG element
     svg.selectAll('*').remove()
 
@@ -72,7 +74,7 @@ const ForceGraph = ({ data, scaleFactor }) => {
       .enter()
       .append('circle')
       .attr('r', nodeRadius)
-      .attr('fill', '#fff')
+      .attr('fill', (d) => (d.type === 'source' ? Maroon : Gold))
       .attr('stroke', '#000') // Border color
       .call(
         d3
@@ -82,10 +84,12 @@ const ForceGraph = ({ data, scaleFactor }) => {
           .on('end', dragended),
       )
       .on('mouseover', function (event, d) {
-        d3.select(this).attr('fill', '#0000ff') // Change color to blue on hover
+        d3.select(this).attr('fill', '#ffffff') // Change color to blue on hover
       })
       .on('mouseout', function (event, d) {
-        d3.select(this).attr('fill', '#fff') // Revert color on mouse out
+        d3.select(this).attr('fill', (d) =>
+          d.type === 'source' ? Maroon : Gold,
+        ) // Revert color on mouse out
       })
       .on('click', function (event, d) {
         console.log('Node clicked:', d)
@@ -122,6 +126,42 @@ const ForceGraph = ({ data, scaleFactor }) => {
 
       nodeText.attr('x', (d) => d.x + 30).attr('y', (d) => d.y + 5) // Adjust the position of the text relative to the node
     })
+
+    // Add legend to the top right corner
+    const legend = svg
+      .append('g')
+      .attr('class', 'legend')
+      .attr('transform', `translate(20, 20)`)
+
+    legend
+      .append('circle')
+      .attr('cx', 10)
+      .attr('cy', 10)
+      .attr('r', 10)
+      .attr('fill', Maroon)
+
+    legend
+      .append('text')
+      .attr('x', 30)
+      .attr('y', 15)
+      .attr('font-size', 15)
+      .attr('fill', '#fff')
+      .text('Person')
+
+    legend
+      .append('circle')
+      .attr('cx', 10)
+      .attr('cy', 40)
+      .attr('r', 10)
+      .attr('fill', Gold)
+
+    legend
+      .append('text')
+      .attr('x', 30)
+      .attr('y', 45)
+      .attr('font-size', 15)
+      .attr('fill', '#fff')
+      .text('Organization')
 
     // Define drag event handlers for the nodes
     function dragstarted(event, d) {
