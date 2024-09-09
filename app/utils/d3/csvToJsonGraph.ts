@@ -7,7 +7,7 @@ export function csvStringToJsonGraph(csvString: string) {
 
   // Extract unique nodes with type
   const nodes = Array.from(
-    new Set(parsedData.flatMap((d) => [d.interviewee, d.organization])),
+    new Set(parsedData.flatMap((d) => [d.interviewee, d.team])),
   ).map((id) => ({
     id,
     type: parsedData.some((d) => d.interviewee === id) ? 'source' : 'target',
@@ -16,8 +16,7 @@ export function csvStringToJsonGraph(csvString: string) {
   // Map the links
   const links = parsedData.map((d) => ({
     source: d.interviewee,
-    target: d.organization,
-    association: d.title,
+    target: d.team,
   }))
 
   return { nodes, links }

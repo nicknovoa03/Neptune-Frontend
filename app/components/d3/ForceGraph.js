@@ -22,7 +22,7 @@ const ForceGraph = ({ data, scaleFactor }) => {
     const nodeRadius = 15 * adjustedScaleFactor
     const nodeTextSize = 15 * scaleFactor
     const linkWidth = 6 * adjustedScaleFactor
-    const linkDistance = 200 * adjustedScaleFactor
+    const linkDistance = 200 * scaleFactor
     const linkTextSize = 12 * scaleFactor
     const chargeStrength = -90 * adjustedScaleFactor
     const collisionRadius = 5 * adjustedScaleFactor
@@ -166,7 +166,7 @@ const ForceGraph = ({ data, scaleFactor }) => {
       .attr('y', 45)
       .attr('font-size', 15)
       .attr('fill', '#fff')
-      .text('Organization')
+      .text('Team')
 
     // Define drag event handlers for the nodes
     function dragstarted(event, d) {
