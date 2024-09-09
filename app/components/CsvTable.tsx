@@ -28,9 +28,9 @@ const CsvTable: React.FC<CsvTableProps> = ({ csvData }) => {
         <thead>
           <tr className="border-b border-[var(--color-bg-black)]">
             <th className="px-4 py-2 ">Person</th>
-            <th className="px-4 py-2">Organization</th>
             <th className="px-4 py-2 ">Title</th>
             <th className="px-4 py-2 ">Team</th>
+            <th className="px-4 py-2">Organization</th>
           </tr>
         </thead>
         <tbody>
@@ -40,9 +40,9 @@ const CsvTable: React.FC<CsvTableProps> = ({ csvData }) => {
               className="last:border-0 border-b border-[var(--color-bg-black)] text-center"
             >
               <td className="px-4 py-2 ">{item.interviewee}</td>
-              <td className="px-4 py-2">{item.organization}</td>
               <td className="px-4 py-2 ">{item.title}</td>
               <td className="px-4 py-2 ">{item.team}</td>
+              <td className="px-4 py-2">{item.organization}</td>
             </tr>
           ))}
         </tbody>
