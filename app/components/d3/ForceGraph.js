@@ -1,9 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import * as d3 from 'd3'
 
-// Define the ForceGraph component
-const ForceGraph = ({ data, scaleFactor }) => {
-  // Create a ref to the SVG element
+const ForceGraph = ({ data, scaleFactor, showTeam }) => {
   const svgRef = useRef(null)
   const Maroon = '#8C1D40'
   const Gold = '#FFC627'
@@ -11,12 +9,14 @@ const ForceGraph = ({ data, scaleFactor }) => {
   // Adjust scaleFactor if there are more than 50 nodes
   let adjustedScaleFactor = scaleFactor
   if (data.nodes.length > 50) {
-    adjustedScaleFactor = scaleFactor * 0.4 // Adjust the scale factor as needed
+    adjustedScaleFactor = scaleFactor * 0.4
   }
 
   useEffect(() => {
-    // Select the SVG element and set its dimensions
+    // Clear previous contents of the SVG element
     const svg = d3.select(svgRef.current)
+    svg.selectAll('*').remove()
+
     const width = 1500 * scaleFactor
     const height = 1200 * scaleFactor
     const nodeRadius = 15 * adjustedScaleFactor
@@ -26,8 +26,6 @@ const ForceGraph = ({ data, scaleFactor }) => {
     const linkTextSize = 12 * scaleFactor
     const chargeStrength = -90 * adjustedScaleFactor
     const collisionRadius = 5 * adjustedScaleFactor
-    // Clear previous contents of the SVG element
-    svg.selectAll('*').remove()
 
     // Set up the SVG element with the specified dimensions
     svg.attr('width', width).attr('height', height)
@@ -44,7 +42,7 @@ const ForceGraph = ({ data, scaleFactor }) => {
       )
       .force('charge', d3.forceManyBody().strength(chargeStrength))
       .force('center', d3.forceCenter(width / 2, height / 2))
-      .force('collide', d3.forceCollide().radius(collisionRadius)) // Add collision force with a radius of 50
+      .force('collide', d3.forceCollide().radius(collisionRadius))
 
     // Create link elements and append them to the SVG
     const link = svg
@@ -56,21 +54,9 @@ const ForceGraph = ({ data, scaleFactor }) => {
       .append('line')
       .attr('stroke-width', linkWidth)
       .attr('stroke', '#999')
-      .attr('opacity', 0.7) // Semi-transparent links
-
-    // Create text elements for associations and append them to the SVG
-    const linkText = svg
-      .append('g')
-      .attr('class', 'link-texts')
-      .selectAll('text')
-      .data(data.links)
-      .enter()
-      .append('text')
-      .attr('font-size', linkTextSize)
-      .attr('fill', '#ccc')
+      .attr('opacity', 0.7)
 
     // Create node elements and append them to the SVG
-    // Enhance node elements
     const node = svg
       .append('g')
       .attr('class', 'nodes')
@@ -80,7 +66,7 @@ const ForceGraph = ({ data, scaleFactor }) => {
       .append('circle')
       .attr('r', nodeRadius)
       .attr('fill', (d) => (d.type === 'source' ? Maroon : Gold))
-      .attr('stroke', '#000') // Border color
+      .attr('stroke', '#000')
       .call(
         d3
           .drag()
@@ -123,20 +109,15 @@ const ForceGraph = ({ data, scaleFactor }) => {
         .attr('x2', (d) => d.target.x)
         .attr('y2', (d) => d.target.y)
 
-      linkText
-        .attr('x', (d) => (d.source.x + d.target.x + 20) / 2)
-        .attr('y', (d) => (d.source.y + d.target.y) / 2)
-
       node.attr('cx', (d) => d.x).attr('cy', (d) => d.y)
 
-      nodeText.attr('x', (d) => d.x + 30).attr('y', (d) => d.y + 5) // Adjust the position of the text relative to the node
+      nodeText.attr('x', (d) => d.x + 30).attr('y', (d) => d.y + 5)
     })
 
     // Add legend to the top right corner
     const legend = svg
       .append('g')
       .attr('class', 'legend')
-      .attr('transform', `translate(20, 20)`)
 
     legend
       .append('circle')
@@ -166,7 +147,7 @@ const ForceGraph = ({ data, scaleFactor }) => {
       .attr('y', 45)
       .attr('font-size', 15)
       .attr('fill', '#fff')
-      .text('Team')
+      .text(showTeam ? 'Team' : 'Organization')
 
     // Define drag event handlers for the nodes
     function dragstarted(event, d) {
@@ -191,7 +172,7 @@ const ForceGraph = ({ data, scaleFactor }) => {
     return () => {
       simulation.stop()
     }
-  }, [data, scaleFactor, adjustedScaleFactor])
+  }, [data, scaleFactor, adjustedScaleFactor]) // Include showTeam in the dependency array
 
   // Render the SVG element
   return <svg ref={svgRef}></svg>
