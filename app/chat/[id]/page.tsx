@@ -17,7 +17,7 @@ function ChatPage({ params: { id } }: Props) {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      className="flex flex-col h-screen overflow-hidden "
+      className="flex flex-col h-screen max-w-[90%]"
     >
       <Chat chatId={id} />
       <ChatInput chatId={id} />
