@@ -9,7 +9,6 @@ interface NetworkProps {
 
 const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
   const [graphData, setGraphData] = useState<GraphData | null>(null)
-  const [scaleFactor, setScaleFactor] = useState<number>(0.3)
   const [showTeam, setShowTeam] = useState<boolean>(false)
 
   useEffect(() => {
@@ -20,25 +19,6 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
       setGraphData(null)
     }
   }, [csvData, showTeam])
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 600) {
-        setScaleFactor(0.5)
-      } else if (window.innerWidth < 1200) {
-        setScaleFactor(0.75)
-      } else {
-        setScaleFactor(1)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    handleResize() // Set initial value
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
 
   const handleToggle = () => {
     setShowTeam(!showTeam)
@@ -62,11 +42,7 @@ const Network: React.FC<NetworkProps> = ({ csvData }: NetworkProps) => {
           {showTeam ? 'Show Organization' : 'Show Team'}
         </button>
       </div>
-      <ForceGraph
-        data={graphData}
-        scaleFactor={scaleFactor}
-        showTeam={showTeam}
-      />
+      <ForceGraph data={graphData} showTeam={showTeam} />
     </div>
   )
 }

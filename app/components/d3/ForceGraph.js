@@ -1,10 +1,31 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import * as d3 from 'd3'
 
-const ForceGraph = ({ data, scaleFactor, showTeam }) => {
+const ForceGraph = ({ data, showTeam }) => {
+  const [scaleFactor, setScaleFactor] = useState(0.3)
+
   const svgRef = useRef(null)
   const Maroon = '#8C1D40'
   const Gold = '#FFC627'
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 600) {
+        setScaleFactor(0.5)
+      } else if (window.innerWidth < 1200) {
+        setScaleFactor(0.75)
+      } else {
+        setScaleFactor(1)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    handleResize() // Set initial value
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   // Adjust scaleFactor if there are more than 50 nodes
   let adjustedScaleFactor = scaleFactor
@@ -17,8 +38,8 @@ const ForceGraph = ({ data, scaleFactor, showTeam }) => {
     const svg = d3.select(svgRef.current)
     svg.selectAll('*').remove()
 
-    const width = 1500 * scaleFactor
-    const height = 1200 * scaleFactor
+    const width = 1000 * scaleFactor
+    const height = 1000 * scaleFactor
     const nodeRadius = 15 * adjustedScaleFactor
     const nodeTextSize = 15 * scaleFactor
     const linkWidth = 6 * adjustedScaleFactor
@@ -41,7 +62,7 @@ const ForceGraph = ({ data, scaleFactor, showTeam }) => {
           .distance(linkDistance),
       )
       .force('charge', d3.forceManyBody().strength(chargeStrength))
-      .force('center', d3.forceCenter(width / 2, height / 2))
+      .force('center', d3.forceCenter(width / (2 / scaleFactor), height / 2))
       .force('collide', d3.forceCollide().radius(collisionRadius))
 
     // Create link elements and append them to the SVG
@@ -52,9 +73,10 @@ const ForceGraph = ({ data, scaleFactor, showTeam }) => {
       .data(data.links)
       .enter()
       .append('line')
-      .attr('stroke-width', linkWidth)
       .attr('stroke', '#999')
       .attr('opacity', 0.7)
+      .join('line')
+      .attr('stroke-width', (d) => Math.sqrt(d.value))
 
     // Create node elements and append them to the SVG
     const node = svg
@@ -115,9 +137,7 @@ const ForceGraph = ({ data, scaleFactor, showTeam }) => {
     })
 
     // Add legend to the top right corner
-    const legend = svg
-      .append('g')
-      .attr('class', 'legend')
+    const legend = svg.append('g').attr('class', 'legend')
 
     legend
       .append('circle')
