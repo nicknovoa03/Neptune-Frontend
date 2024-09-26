@@ -38,19 +38,21 @@ const ForceGraph = ({ data, showTeam }) => {
     const svg = d3.select(svgRef.current)
     svg.selectAll('*').remove()
 
-    const width = 1000 * scaleFactor
+    const width = 800 * scaleFactor
     const height = 1000 * scaleFactor
-    const nodeRadius = 15 * adjustedScaleFactor
+    const nodeRadius = 12 * adjustedScaleFactor
     const nodeTextSize = 15 * scaleFactor
     const linkWidth = 6 * adjustedScaleFactor
     const linkDistance = 200 * scaleFactor
     const linkTextSize = 12 * scaleFactor
-    const chargeStrength = -90 * adjustedScaleFactor
+    const chargeStrength = -60 * adjustedScaleFactor
     const collisionRadius = 5 * adjustedScaleFactor
 
     // Set up the SVG element with the specified dimensions
-    svg.attr('width', width).attr('height', height)
-
+    svg
+      .attr('width', width)
+      .attr('height', height)
+      
     // Create the D3 simulation with nodes and forces
     const simulation = d3
       .forceSimulation(data.nodes)
@@ -62,7 +64,7 @@ const ForceGraph = ({ data, showTeam }) => {
           .distance(linkDistance),
       )
       .force('charge', d3.forceManyBody().strength(chargeStrength))
-      .force('center', d3.forceCenter(width / (2 / scaleFactor), height / 2))
+      .force('center', d3.forceCenter(width / 2, height / 2))
       .force('collide', d3.forceCollide().radius(collisionRadius))
 
     // Create link elements and append them to the SVG
@@ -195,7 +197,7 @@ const ForceGraph = ({ data, showTeam }) => {
   }, [data, scaleFactor, adjustedScaleFactor]) // Include showTeam in the dependency array
 
   // Render the SVG element
-  return <svg ref={svgRef}></svg>
+  return <svg ref={svgRef} style={{ width: '100%' }}></svg>
 }
 
 export default ForceGraph
